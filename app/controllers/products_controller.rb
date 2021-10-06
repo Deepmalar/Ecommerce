@@ -2,58 +2,69 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   
   # GET /products
-  # GET /products.json
+  # GET method to get all products from database   
   
   def index
     @products = Product.all
   end
 
   # GET /products/1
-  # GET /products/1.json
+  # GET method to get a product by id
+
   def show; end
 
   # GET /products/new
+  # GET method for the new product form
+
   def new
     @product = Product.new
   end
   
-  # GET /products/1/edit
-  def edit; end
-
   # POST /products
-  # POST /products.json
+  # POST method for processing form data   
 
   def create
     @product = Product.new(product_params)
     if @product.save
-      notify_user
-      flash[:info] = generate_activation_message.html_safe
-      redirect_to root_url
+      flash[:notice] = 'Product added!'   
+      redirect_to root_path   
     else
       render 'new'
     end
   end
 
+  # GET /products/1/edit
+  # GET method for editing a product based on id
+
+  def edit
+  end
+
   # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
+  # PUT method for updating in database a product based on id   
 
   def update
     if @product.update(product_params)
-       flash[:success] = 'Product updated'
-       redirect_to @product
+      flash[:notice] = 'Product updated!'   
+      redirect_to root_path   
     else
       flash[:error] = 'Failed to edit Product!!!'
-       render 'edit'
+      render 'edit'
     end
   end
 
   # DELETE /products/1
-  # DELETE /products/1.json
+  # DELETE method for deleting a product from database based on id   
 
   def destroy
-    @product.destroy
-  end
-  
+    if @product.destroy
+      flash[:notice] = 'Product deleted!'   
+      redirect_to root_path   
+    else   
+      flash[:error] = 'Failed to delete this product!'   
+      render :destroy   
+    end   
+  end   
+
   # Use callbacks to share common setup or constraints between actions.
 
   private

@@ -1,16 +1,28 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_find, only: [:show, :edit, :update, :destroy]
   
+  # GET /orders
+  # GET method to get all orders from database 
+
   def index
     @orders = Order.all
   end
 
+  # GET /orders/1
+  # GET method to get a order by id
+
   def show
   end
+
+  # GET /orders/new
+  # GET method for the new order form
 
   def new
     @order = Order.new
   end
+
+  # POST /orders
+  # POST method for processing form data
 
   def create
     @order = Order.new(order_params)
@@ -21,8 +33,14 @@ class OrdersController < ApplicationController
     redirect_to orders_path
   end
 
+  # GET /orders/1/edit
+  # GET method for editing a order based on id
+
   def edit
   end
+
+  # PATCH/PUT /orders/1
+  # PUT method for updating in database a order based on id 
 
   def update
     if @order.update(order_params)
@@ -34,6 +52,9 @@ class OrdersController < ApplicationController
     end
   end
 
+  # DELETE /Orders/1
+  # DELETE method for deleting a order from database based on id
+
   def destroy
     @order.destroy
     flash[:success] = 'Order Deleted'
@@ -43,7 +64,8 @@ class OrdersController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_order
+
+  def find_order
     @order = Order.find(params[:id])
   end
   
