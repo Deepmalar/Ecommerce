@@ -1,0 +1,12 @@
+<h2>Address List</h2>
+<div class="container">    
+  <% @addresses.each do |address| %>   
+  <tr>   
+    <td><%= address.city %></td>   
+    <td><%= address.state %></td> 
+    <td><%= address.country %></td> 
+    <td><%= address.zip_code %></td> 
+    <td><%= address.street %></td>
+  </tr>   
+ <% end %>   
+</div>   

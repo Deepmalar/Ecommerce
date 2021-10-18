@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
   # POST method for processing form data   
 
   def create
+     #byebug
     @product = Product.new(product_params)
     if @product.save
       flash[:notice] = 'Product added!'   
@@ -77,6 +78,6 @@ class ProductsController < ApplicationController
   # only allow the white list through.
 
   def product_params
-    params.require(:product).permit(:product_name, :p_description, :quantity, :price)
+    params.require(:product).permit(:product_name, :p_description, :quantity, :price, :category_id)
   end
 end  

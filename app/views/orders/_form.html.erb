@@ -1,0 +1,17 @@
+<%= form_with(model: order) do |form| %>
+    <div class="field">
+     <%= form.label :order_number %><br>
+     <%= form.text_field :order_number %>
+    </div>
+   
+    <div class="field">   
+     <%= form.label :order_amount %><br>
+     <%= form.text_field :order_amount %>  
+    </div>   
+
+    <div class="actions">
+     <%= form.submit %>
+    </div>
+
+<% end %>
+     

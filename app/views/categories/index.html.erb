@@ -1,0 +1,21 @@
+<h2>Category List</h2>
+
+<div class="container">   
+
+<div>   
+  <%= link_to 'Add Category', new_category_path %>   
+</div>   
+<br>
+<% @categories.each do |category| %>
+
+   <%= category.category_name %>  
+   <div>   
+           <td>   
+            <%= link_to 'Show', category_path(category) %>   
+            <%= link_to 'Edit', edit_category_path(category) %>   
+            <%= link_to 'Delete', category_path(category), method: :delete %>   
+          </div>   
+        </td>    
+   
+</div> 
+<% end %>   

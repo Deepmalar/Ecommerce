@@ -19,6 +19,27 @@ class UsersController < ApplicationController
 
   def edit
   end
+
+  # GET /users/new
+  # GET method for the new user form
+
+  def new
+    @user = User.new 
+  end
+
+  # POST /users
+  # POST method for processing form data
+
+  def create
+    @user = User.new(user_params) # Not the final implementation!
+    if @user.save
+      notify_user
+      flash[:info] = generate_activation_message.html_safe
+      redirect_to root_url
+    else
+      render 'new'
+    end
+  end
      
   # PATCH/PUT /users/1
   # PUT method for updating in database a user based on id 
