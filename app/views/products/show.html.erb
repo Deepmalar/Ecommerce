@@ -1,11 +1,13 @@
 <p id="notice"><%= notice %></p>
 <div class="container">        
-    <h3>User</h3>   
+    <h3>User</h3>  
        
     <div>   
         <label>ProductName</label>   
         <%= @product.product_name %>   
     </div> 
+
+    <%= image_tag @product.image, style: "width: 200px; display: bolck" %>
             
     <div>   
         <label>Product_Description</label>   
@@ -20,7 +22,7 @@
     <div>   
         <label>Price</label>   
         <%= @product.price %>   
-    </div>   
+    </div>  
          
     <div>   
     <%= link_to 'Edit', edit_product_path(@product) %> |

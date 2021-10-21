@@ -2,6 +2,16 @@
 <%= form_with(model: @product) do |form| %>  
  
  <%= form.select :category_id, fetch_categories %>   
+
+ <div class="form-group">
+  <% if @product.image.attached? %>
+   <%= image_tag @product.image, style: "width: 200px; display: bolck" %>
+  <% end %> 
+
+  <%= form.label :image%>
+  <%= form.file_field :image, class: "form-control" %>
+ </div>
+ 
  <div class="field">
   <%= form.label :product_name %><br>
   <%= form.text_field :product_name %>
@@ -21,7 +31,7 @@
   <%= form.label :quantity %><br>
   <%= form.text_field :quantity %>   
  </div>  
-  
+
  <div class="actions">
   <%= form.submit %>
  </div>

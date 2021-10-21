@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  
+  #authorize @users
   # GET /users
   # GET method to get all users from database   
 
   def index
     @users = User.all
+    authorize @users
   end
 
   # GET /users/1

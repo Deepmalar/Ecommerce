@@ -78,6 +78,6 @@ class ProductsController < ApplicationController
   # only allow the white list through.
 
   def product_params
-    params.require(:product).permit(:product_name, :p_description, :quantity, :price, :category_id)
+    params.require(:product).permit(:product_name, :image, :p_description, :quantity, :price, :category_id)
   end
 end  

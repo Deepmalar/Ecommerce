@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
   # POST method for processing form data
 
   def create
+    #byebug
     @order = Order.new(order_params)
     @order.update(user_id: @current_user.id)
     add_product_to_order
