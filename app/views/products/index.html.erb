@@ -1,37 +1,42 @@
-<h2>Product List</h2>
-<div class="container">    
-  <% @products.each do |product| %>   
-  <div>   
-    <%= product.product_name %>   
-  </div> 
-
-  <div>     
-    <%= product.p_description %>   
-  </div> 
-
-  <div>  
-    <%= product.quantity %>   
-  </div>
-         
-  <div>
-       
-  Rs. <%= product.price %>   
-  </div>  
+  <h2>Product List</h2>
   
-  <div>
-   <%= image_tag product.image, style: "width: 200px; display: bolck" %>
-  </div>
+  <div class="container">
+     
+     <% @products.each do |product| %> 
+
+     <%= link_to product_path(product) do %>	
+     <div class="responsive">
+	 <div class="gallery">
    
-   <div>   
-           <td>   
-            <%= link_to 'Show', product_path(product) %>   
-            <%= link_to 'Edit', edit_product_path(product) %>   
-            <%= link_to 'Delete', product_path(product), method: :delete %>   
-          </div>   
-        </td>   
-  </br>  
- <% end %>   
-</div> <br> 
+	 <% if product.image.attached? %>
+	 <%= image_tag product.image %>
+	 <% end %>
+	
+	 <div class="desc">
+	   <strong><%= product.product_name %> </strong></br>
+	 </div>
+     <% end %>
+	
+	<% if policy(product).update? %>
+	  <button type="button" class="btn btn-outline-success">
+	  <%= link_to "Edit", edit_product_path(product) %></button>
+	<% end %>
+	
+	<% if policy(product).update? %>
+	  <button type="button" class="btn btn-outline-danger">
+	  <%= link_to "Delete", product_path(product), method: :delete  %></button>
+	<% end %>
+
+	<% if policy(product).update? %>
+	  <button type="button" class="btn btn-primary">
+      <%= link_to "Add New Product", new_product_path(product) %></button>
+    <% end %>
+
+  </div>
+  </div>
+   <% end %>
+  </div> 
+  
 
 
 

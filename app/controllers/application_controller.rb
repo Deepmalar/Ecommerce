@@ -1,23 +1,28 @@
 class ApplicationController < ActionController::Base 
-  protect_from_forgery with: :exception
-  
-  include Pundit
+	protect_from_forgery with: :exception
 
-  before_action :update_allowed_parameters, if: :devise_controller?
+	#before_action :update_allowed_parameters, if: :devise_controller?
+	
+	before_action :authenticate_user!
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+	after_action :verify_authorized, :except => :index, unless: :devise_controller?
 
-  private
+	include Pundit
+	
+	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
-    redirect_to(request.referrer || root_path)
-  end
-  
-  protected
+	private
 
-  def update_allowed_parameters
-    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :phone_no, :password)}
-    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:first_name, :last_name, :email, :phone_no, :password, :current_password)}
-  end
+	def user_not_authorized
+		flash[:alert] = "You are not authorized to perform this action."
+		redirect_to(request.referrer || root_path)
+	end
+	
+	# protected
+
+	# def update_allowed_parameters
+	#  devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:role, :first_name, :last_name, :email, :phone_no, :password)}
+	# 	devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:role, :first_name, :last_name, :email, :phone_no, :password, :current_password)}
+	# end
 end
+

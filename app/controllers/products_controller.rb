@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, only: [:new, :create, :edit, :destroy]
   
   # GET /products
   # GET method to get all products from database   
@@ -18,13 +19,14 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    authorize Product
   end
   
   # POST /products
   # POST method for processing form data   
 
   def create
-     #byebug
+    authorize Product
     @product = Product.new(product_params)
     if @product.save
       flash[:notice] = 'Product added!'   
@@ -38,12 +40,14 @@ class ProductsController < ApplicationController
   # GET method for editing a product based on id
 
   def edit
+    authorize Product
   end
 
   # PATCH/PUT /products/1
   # PUT method for updating in database a product based on id   
 
   def update
+    authorize Product
     if @product.update(product_params)
       flash[:notice] = 'Product updated!'   
       redirect_to root_path   
@@ -57,6 +61,7 @@ class ProductsController < ApplicationController
   # DELETE method for deleting a product from database based on id   
 
   def destroy
+    authorize Product
     if @product.destroy
       flash[:notice] = 'Product deleted!'   
       redirect_to root_path   

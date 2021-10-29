@@ -1,40 +1,40 @@
 
 <%= form_with(model: @product) do |form| %>  
  
- <%= form.select :category_id, fetch_categories %>   
+<%= form.select :category_id, fetch_categories %>   
 
- <div class="form-group">
-  <% if @product.image.attached? %>
-   <%= image_tag @product.image, style: "width: 200px; display: bolck" %>
-  <% end %> 
+  <div class="form-group">
+   <% if @product.image.attached? %>
+    <%= image_tag @product.image, style: "width: 200px; display: bolck" %>
+   <% end %> 
 
   <%= form.label :image%>
-  <%= form.file_field :image, class: "form-control" %>
- </div>
+    <%= form.file_field :image, class: "form-control" %>
+  </div>
  
- <div class="field">
-  <%= form.label :product_name %><br>
-  <%= form.text_field :product_name %>
- </div>
+  <div class="field">
+    <%= form.label :product_name %><br>
+    <%= form.text_field :product_name %>
+  </div>
 
- <div class="field"> 
-  <%= form.label :p_description %><br>
-  <%= form.text_field :p_description %>
- </div>
+  <div class="field"> 
+    <%= form.label :p_description %><br>
+    <%= form.text_field :p_description %>
+  </div>
    
- <div class="field">   
-  <%= form.label :price %><br>
-  <%= form.text_field :price %>  
- </div>   
+  <div class="field">   
+    <%= form.label :price %><br>
+    <%= form.text_field :price %>  
+  </div>   
 
- <div class="field">   
-  <%= form.label :quantity %><br>
-  <%= form.text_field :quantity %>   
- </div>  
+  <div class="field">   
+    <%= form.label :quantity %><br>
+    <%= form.text_field :quantity %>   
+  </div>  
 
- <div class="actions">
-  <%= form.submit %>
- </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
 
 <% end %>
   

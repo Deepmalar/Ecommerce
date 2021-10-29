@@ -3,3 +3,4 @@ module ProductsHelper
     Category.all.map{ |cat| [cat.category_name, cat.id] }
   end
 end
+

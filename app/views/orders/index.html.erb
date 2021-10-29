@@ -2,14 +2,10 @@
 
 <div class="container">   
 
-<div>   
-  <%= link_to 'Add Order', new_order_path %>   
-</div>   
-<br>
 <% @orders.each do |order| %>
 
-   <%= order.order_number %>   
-   <%= order.order_amount %> 
+   <%= order.description %>   
+
 </div> 
 <% end %>   
 

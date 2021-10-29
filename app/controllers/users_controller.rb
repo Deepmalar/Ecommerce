@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  #authorize @users
+  after_action :verify_authorized, only: [:new, :create, :edit, :destroy]
+
   # GET /users
   # GET method to get all users from database   
 
   def index
     @users = User.all
-    authorize @users
+    authorize User
   end
 
   # GET /users/1
@@ -19,6 +20,7 @@ class UsersController < ApplicationController
   # GET method for editing a user based on id
 
   def edit
+    authorize User
   end
 
   # GET /users/new
@@ -46,6 +48,7 @@ class UsersController < ApplicationController
   # PUT method for updating in database a user based on id 
 
   def update
+    authorize User
     if @user.update(user_params)
        flash[:success] = 'Profile updated'
        redirect_to @user
@@ -59,6 +62,7 @@ class UsersController < ApplicationController
   # DELETE method for deleting a user from database based on id
   
   def destroy
+    authorize User
     @user.destroy
     flash[:success] = 'User deleted'
     redirect_back(fallback_location: users_url)
@@ -72,8 +76,9 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user)
-          .permit(:email, :first_name, :last_name, :phone_no, :password, :password_confirmation)
+    params.require(:user).permit(:email, :first_name, :last_name, :phone_no, :password, :password_confirmation)
   end
     
 end
+
+

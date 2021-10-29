@@ -1,27 +1,32 @@
 <div class="container">        
-    <h3>User</h3>   
+  <h3>User</h3>  
+  
+  <div>   
+    <label>Role</label>   
+    <%= @user.role %>   
+  </div> 
        
-    <div>   
-        <label>Email</label>   
-        <%= @user.email %>   
-    </div> 
+  <div>   
+    <label>Email</label>   
+    <%= @user.email %>   
+  </div> 
             
-    <div>   
-        <label>FirstName</label>   
-        <%= @user.first_name %>   
-    </div> 
+  <div>   
+    <label>FirstName</label>   
+    <%= @user.first_name %>   
+  </div> 
     
-    <div>   
-        <label>LastName</label>   
-        <%= @user.last_name %>   
-    </div>
+  <div>   
+    <label>LastName</label>   
+    <%= @user.last_name %>   
+  </div>
              
-    <div>   
-        <label>PhoneNo.</label>   
-        <%= @user.phone_no %>   
-    </div>   
+  <div>   
+    <label>PhoneNo.</label>   
+    <%= @user.phone_no %>   
+  </div>   
          
-    <div>   
-       <%= link_to 'Back', { controller: 'users', action: 'index'} %>   
-    </div>   
+  <div>   
+    <%= link_to 'Back', { controller: 'users', action: 'index'} %>   
+  </div>   
 </div>  

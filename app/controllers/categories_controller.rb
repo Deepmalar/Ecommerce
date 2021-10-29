@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
     #skip_before_action :verify_authenticity_token
     before_action :set_category, only: [:show, :edit, :update, :destroy]
+    after_action :verify_authorized, only: [:new, :create, :edit, :destroy]
     
     # GET /categories
     # GET method to get all categories from database   
@@ -19,6 +20,7 @@ class CategoriesController < ApplicationController
     # GET method for editing a category based on id
   
     def edit
+      authorize Category
     end
   
     # GET /categories/new
@@ -26,13 +28,14 @@ class CategoriesController < ApplicationController
   
     def new
       @category = Category.new 
+      authorize Category
     end
     
     # POST /categories
     # POST method for processing form data   
 
     def create
-     #byebug
+     authorize Category 
      @category = Category.new(category_params)
      if @category.save
       flash[:notice] = 'Category added!'   
@@ -46,12 +49,14 @@ class CategoriesController < ApplicationController
   # GET method for editing a category based on id
 
   def edit
+    authorize Category
   end
 
   # PATCH/PUT /categories/1
   # PUT method for updating in database a category based on id   
 
   def update
+    authorize Category
     if @category.update(category_params)
       flash[:notice] = 'Category updated!'   
       redirect_to root_path   
@@ -65,6 +70,7 @@ class CategoriesController < ApplicationController
   # DELETE method for deleting a category from database based on id   
 
   def destroy
+    authorize Category
     if @category.destroy
       flash[:notice] = 'Category deleted!'   
       redirect_to root_path   
