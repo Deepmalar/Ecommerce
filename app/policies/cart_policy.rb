@@ -5,15 +5,11 @@ class CartPolicy < ApplicationPolicy
   #   end
   # end
 
-  def add_to_cart?
+  def show?
     user.member?
   end
-  
-  # def show
-  #  
-  # end
 
-  # def destroy
-  #   
-  # end
+  def destroy?
+    user.member?
+  end 
 end

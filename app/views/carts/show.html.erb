@@ -1,0 +1,28 @@
+<h2 style="text-align:center">Cart show</h2>
+
+<% @cart.line_items.each do |line_item| %>
+<div class="container">
+  <div class="responsive">
+    <div class="gcart">
+    <%= image_tag line_item.product.image %></br>
+    
+     Name :<%= line_item.product.product_name %></br>
+	
+     Price: <%= number_to_currency(line_item.product.price) %></br>
+
+     Quantity: <%= line_item.quantity %></br>
+     <%= link_to "Add one", line_item_add_path(:id => line_item), method: :post %>
+
+     <%= link_to "Reduce one", line_item_reduce_path(:id => line_item), method: :post %>
+
+     <%= link_to "Remove item", line_item_path(line_item), method: :delete %></br>
+
+     Total Price: <%= number_to_currency(line_item.total_price) %></br>
+
+<% end %>
+    </div>
+</div>
+</div>
+<h5>Sub total: <%= number_to_currency(@cart.sub_total) %></h5> </br>
+<button type="button" class="btn btn-outline-primary"><%= link_to "Place Order", new_order_path %></button>
+<button type="button" class="btn btn-outline-danger"><%= link_to "Empty cart", cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"} %></button></br>  
